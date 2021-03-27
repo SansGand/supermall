@@ -1,4 +1,4 @@
-<!-- 导航栏整体页面 -->
+<!-- 底端导航栏整体页面 -->
 <template>
   <div id="tab-bar">
     <slot></slot>

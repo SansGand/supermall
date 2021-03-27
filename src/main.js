@@ -4,6 +4,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+// 事件总线 类似于vuex的效果，只不过管理的是事件
+Vue.prototype.$bus = new Vue()
+
 new Vue({
     render: h => h(App),
     router

@@ -1,4 +1,4 @@
-<!-- 导航栏按钮页面 -->
+<!-- 底端导航栏按钮页面 -->
 <template>
   <div class="tab-bar-item" @click="itemClick">
     <div v-if="!isActive">

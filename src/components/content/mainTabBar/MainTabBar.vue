@@ -4,10 +4,10 @@
     <tab-bar-item path="/home">
       <template #item-icon>
         <!-- html里的别名要加~ -->
-        <img src="~assets/img/home.svg" alt="">
+        <img src="~assets/img/tabbar/home.svg" alt="">
       </template>
       <template #item-icon-active>
-        <img src="~assets/img/home_active.svg" alt="">
+        <img src="~assets/img/tabbar/home_active.svg" alt="">
       </template>
       <template #item-text>
         <div>首页</div>
@@ -15,10 +15,10 @@
     </tab-bar-item>
     <tab-bar-item path="/category">
       <template #item-icon>
-        <img src="~assets/img/category.svg" alt="">
+        <img src="~assets/img/tabbar/category.svg" alt="">
       </template>
       <template #item-icon-active>
-        <img src="~assets/img/category_active.svg" alt="">
+        <img src="~assets/img/tabbar/category_active.svg" alt="">
       </template>
       <template #item-text>
         <div>分类</div>
@@ -26,10 +26,10 @@
     </tab-bar-item>
     <tab-bar-item path="/shopcar">
       <template #item-icon>
-        <img src="~assets/img/shopcar.svg" alt="">
+        <img src="~assets/img/tabbar/shopcar.svg" alt="">
       </template>
       <template #item-icon-active>
-        <img src="~assets/img/shopcar_active.svg" alt="">
+        <img src="~assets/img/tabbar/shopcar_active.svg" alt="">
       </template>
       <template #item-text>
         <div>购物车</div>
@@ -37,10 +37,10 @@
     </tab-bar-item>
     <tab-bar-item path="/profile">
       <template #item-icon>
-        <img src="~assets/img/profile.svg" alt="">
+        <img src="~assets/img/tabbar/profile.svg" alt="">
       </template>
       <template #item-icon-active>
-        <img src="~assets/img/profile_active.svg" alt="">
+        <img src="~assets/img/tabbar/profile_active.svg" alt="">
       </template>
       <template #item-text>
         <div>我的</div>

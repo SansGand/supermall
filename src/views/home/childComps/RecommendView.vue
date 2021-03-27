@@ -34,6 +34,7 @@ export default {
   text-align: center;
   padding: 10px 0 20px;
   border-bottom: 10px solid #eee;
+  font-size: 15px;
 }
 .recommend-item{
   /* 水平均等分布 */

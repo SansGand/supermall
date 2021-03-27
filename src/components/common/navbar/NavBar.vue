@@ -1,4 +1,4 @@
-<!-- 导航栏模块 -->
+<!-- 顶端导航栏模块 -->
 <template>
   <div class="nav-bar">
     <div class="left"><slot name="left"></slot></div>
