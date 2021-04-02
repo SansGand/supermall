@@ -13,7 +13,7 @@
 import {Swiper, SwiperItem} from 'components/common/swiper'
 
 export default {
-  name: "",
+  name: "HomeSwiper",
   data () {
     return {
       isLoad: false

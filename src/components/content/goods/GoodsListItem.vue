@@ -1,7 +1,7 @@
 <!-- 商品详情展示-每个商品页面 -->
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="" @load="imgLoad">
+  <div class="goods-item" @click="itemClick">
+    <img v-lazy="showImg" alt="" @load="imgLoad">
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -25,10 +25,28 @@ export default {
       }
     }
   },
+  computed: {
+    showImg() {
+      return this.goodsItem.image || this.goodsItem.show.img
+    }
+  },
   methods: {
     imgLoad() {
       //事件总线发射事件
       this.$bus.$emit('imageLoad')
+    },
+    itemClick() {
+      //传递参数1：
+      if(this.goodsItem.iid){
+        this.$router.push('/detail/' + this.goodsItem.iid)
+      }
+      //传递参数2:
+      // this.$router.push({
+      //   path: '/detail',
+      //   query: {
+      //     iid: this.goodsItem.iid
+      //   }
+      // })
     }
   }
 }

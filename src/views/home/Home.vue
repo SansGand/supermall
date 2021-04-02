@@ -24,7 +24,6 @@ import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
-import BackTop from 'components/content/backTop/BackTop'
 
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
@@ -32,6 +31,7 @@ import FeatureView from './childComps/FeatureView'
 
 import {getHomeMultidata,getHomeGoods} from 'network/home'
 import {debounce} from 'common/util'
+import {imgListenerMixin,backTopMixin} from 'common/mixin'
 
 export default {
   name: "Home",
@@ -40,11 +40,12 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop,
     HomeSwiper,
     RecommendView,
     FeatureView
   },
+  // vue重复代码的混入
+  mixins: [imgListenerMixin,backTopMixin],
   created() {//尽量只写主要逻辑
     //请求首页轮播图、推荐数据
     this.getHomeMultidata()
@@ -56,12 +57,13 @@ export default {
   },
   mounted() {
     //调用函数加()为返回值，不加()为函数对象
-    const refresh = debounce(this.$refs.scroll.refresh,500)
+    //防抖，防止频繁执行refresh
+    // const refresh = debounce(this.$refs.scroll.refresh,500)
     //事件总线监听图片加载事件
-    this.$bus.$on('imageLoad',() => {
-      //图片全部加载完成后调用refresh
-      refresh()
-    })
+    // this.$bus.$on('imageLoad',() => {
+    //   //图片全部加载完成后调用refresh
+    //   refresh()
+    // })
   },
   //只有组件在keep-alive内时，才会有这两个函数
   //进入组件时触发
@@ -74,6 +76,8 @@ export default {
   deactivated() {
     //记录离开时的y坐标
     this.saveY = this.$refs.scroll.scroll.y
+    //关闭Home组件goodslist事件总线监听
+    this.$bus.$off('imageLoad',this.imgListener)
   },
   methods: {//具体实现方法
     /**
@@ -94,13 +98,8 @@ export default {
       //让两个tabControl保持选中是一样的
       this.$refs.tabControl.currentIndex = index
       this.$refs.tabControl1.currentIndex = index
-    },
-    //返回顶部
-    backClick() {
-      //this.$refs.scroll获取Scroll组件
-      //然后获取组件data里定义的srcoll，调用scrollTo方法
-      //scrollTo(x, y, time) 横轴坐标，纵轴坐标，滚动动画执行时长
-      this.$refs.scroll.scroll.scrollTo(0, 0, 500)
+
+      // this.$refs.scroll.scroll.scrollTo(0,-(this.$refs.tabControl.$el.offsetTop),0)
     },
     //监听页面滚动
     contentScroll(position) {
@@ -150,7 +149,6 @@ export default {
         'sell': {page:0,list:[]}
       },
       currentType: 'pop',
-      isShow: false,
       tabControlOffsetTop: 0,
       tabControlFixed: false,
       saveY: 0
